@@ -8,15 +8,15 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/Home">Desafio 1</a>
+        <a class="navbar-brand" href="/">Desafio 1</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item active">
+            <!-- <li class="nav-item active">
               <a class="nav-link" href="/Home">Home <span class="sr-only">(current)</span></a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="/cadastrarFuncionario">Cadastrar Funcionario</a>
             </li>
@@ -27,9 +27,34 @@
       <div class="container mt-4">
           <h2>Lista de funcionários</h2>
           <div>
-              <table>
+              <table class="table">
+                <thead>
+                  <tr>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Sobrenome</th>
+                      <th scope="col">Cargo</th>
+                      <th scope="col">Ações</th>
+                  </tr>
+                </thead>
                   <tbody>
-                      
+                      <% funcionarios.forEach(function(funcionario) { %>
+                         <tr>
+                           <td> <%= funcionario.nome %></td>
+                           <td> <%= funcionario.sobrenome %></td>
+                           <td> <%= funcionario.cargo %></td>
+                           <td>
+                             <form method="POST" action="/deletarFuncionario">
+                              <input type="hidden" name="id" value="<%= funcionario._id%>">
+                              <a class="btn btn-danger">
+                               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                               </svg>
+                              </a>
+                             </form>
+                           </td>
+                         </tr>
+                      <% })%>
                   </tbody>
               </table>
           </div>
