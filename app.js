@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const app = express();
 const path = require('path');
 require('./models/Funcionario');
+require('./models/Cliente');
+const Cliente  = mongoose.model("Clientes");
 const Funcionario = mongoose.model("Funcionarios");
 
 
@@ -56,6 +58,30 @@ app.post('/cadastrarFuncionario', (req, res) => {
 
     res.redirect('/');
 });
+
+// CLIENTES
+app.get('/cadastrarCliente', (req,res) => {
+    res.render('cadastrarCliente');
+});
+
+app.post('/cadastrarCliente', (req, res )=> {
+    const novoCliente = {
+        nome: req.body.nome,   
+        sobrenome:req.body.sobrenome,
+        dataNascimento:req.body.dataNascimento,
+        email: req.body.email,
+        telefone: req.body.telefone,
+        endereco: req.body.endereco,
+    }
+
+    new Cliente (novoCliente).save().then(() => {
+        console.log("Categoria salva com sucesso!")
+    }).catch((err) => {
+        console.log("Erro ao salvar a categoria: "+ err);
+    });
+    res.redirect('/');
+});
+
 
  // Mongoose
     mongoose.Promise = global.Promise;
