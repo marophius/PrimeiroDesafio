@@ -8,6 +8,7 @@ require('./models/Funcionario');
 require('./models/Cliente');
 const Cliente  = mongoose.model("Clientes");
 const Funcionario = mongoose.model("Funcionarios");
+var db = mongoose.connection;
 
 
 // Config
@@ -15,10 +16,16 @@ const Funcionario = mongoose.model("Funcionarios");
     app.use(bodyParser.json());
     app.set('view engine', 'ejs');
     app.use(express.static(path.join(__dirname, "public")));
+
 // Routes
+
 app.get('/', (req, res) => {
+    res.render('index');
+})
+
+app.get('/funcionarios', (req, res) => {
     Funcionario.find().then((funcionarios) => {
-        res.render('index', {
+        res.render('funcionarios', {
             funcionarios: funcionarios
         });
     }).catch((err) => {
@@ -31,10 +38,10 @@ app.get('/', (req, res) => {
 app.post('/deletarFuncionario', (req, res) => {
     Funcionario.remove({_id: req.body.id}).then(() => {
         req.flash("success_msg", "Categoria deletada com sucesso");
-        res.redirect('/home');
+        res.redirect('/');
     }).catch((err) => {
         req.flash("error_msg", "Houve um erro ao deletar a categoria");
-        res.redirect('/home');
+        res.redirect('/');
     })
 })
 
@@ -57,6 +64,37 @@ app.post('/cadastrarFuncionario', (req, res) => {
     });
 
     res.redirect('/');
+});
+
+app.get('/editarFuncionario/:id', (req, res) => {
+    Funcionario.findOne({_id: req.params.id})
+    .then((funcionario) => {
+        res.render('editarFuncionario', {funcionario: funcionario});
+    }).catch((error) => {
+        req.flash('error_msg', "Esse funcionario não existe");
+        res.redirect('/');
+    })
+})
+
+app.post('/editarFuncionario', (req, res) => {
+    Funcionario.findOne({_id: req.body.id})
+    .then((funcionario) => {
+        funcionario.nome = req.body.nome;
+        funcionario.sobrenome = req.body.sobrenome;
+        funcionario.dataNascimento = req.body.dataNascimento;
+        funcionario.cargo = req.body.cargo;
+
+        funcionario.save().then(() => {
+            req.flash("success_msg", "Funcionario salvo!");
+            res.redirect('/');
+        }).catch((error) => {
+            req.flash("error_msg", "Houve um erro interno ao salvar a edição do funcionario");
+            res.redirect('/');
+        });
+    }).catch((error) => {
+        req.flash("error_msg", "Houve um erro ao editar o funcionário");
+        res.redirect('/');
+    })
 });
 
 // CLIENTES
