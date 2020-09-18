@@ -3,18 +3,22 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
-const routes = require('./routes/routes');
+//const routes = require('./routes/routes');
 const path = require('path');
 require('./models/Funcionario');
 const Funcionario = mongoose.model("Funcionarios")
+
+require('./models/Cliente');
+const Cliente  = mongoose.model("Clientes");
 
 // Config
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
     app.set('view engine', 'ejs');
     app.use(express.static(path.join(__dirname, "public")));
+    
 // Routes
-app.get('/home', (req, res) => {
+app.get('/', (req, res) => {
     Funcionario.find();
     res.render('index');
 });
@@ -37,8 +41,30 @@ app.post('/cadastrarFuncionario', (req, res) => {
         console.log("Erro ao salvar a categoria: "+err);
     });
 
-    res.redirect('/Home');
+    res.redirect('/');
 });
+app.get('/cadastrarCliente', (req,res) => {
+    res.render('cadastrarCliente');
+});
+app.post('/cadastrarCliente', (req, res )=> {
+    const novoCliente = {
+        nome: req.body.nome,   
+        sobrenome:req.body.sobrenome,
+        dataNascimento:req.body.dataNascimento,
+        email: req.body.email,
+        telefone: req.body.telefone,
+        endereco: req.body.endereco,
+    }
+
+    new Cliente (novoCliente).save().then(() => {
+        console.log("Categoria salva com sucesso!")
+    }).catch((err) => {
+        console.log("Erro ao salvar a categoria: "+ err);
+    });
+    res.redirect('/');
+});
+
+
 
  // Mongoose
     mongoose.Promise = global.Promise;
@@ -51,5 +77,5 @@ app.post('/cadastrarFuncionario', (req, res) => {
 //Others
 const porta = 3000;
 app.listen(porta, (req, res) =>{
-    console.log();
-})
+    console.log("Url: localhost:3000");
+});

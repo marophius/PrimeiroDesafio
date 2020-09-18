@@ -8,17 +8,20 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/Home">Desafio 1</a>
+        <a class="navbar-brand" href="/">Desafio 1</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link" href="/Home">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/cadastrarFuncionario">Cadastrar Funcionario</a>
+              <a class="nav-link" href="/cadastrarFuncionario">Cadastrar Funcionário</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/cadastrarCliente">Cadastrara Cliente</a>
             </li>
           </ul>
         </div>
@@ -28,7 +31,7 @@
           <h2>Cadastrar Funcionário</h2>
           <form method="POST" action="/cadastrarFuncionario">
               <label for="nome">Nome</label>
-              <input type="text" id="nome" name="nome" placeholder="ex.: Christian" class="form-control">
+              <input type="text" id="nome" name="nome" placeholder="ex.: Cristian" class="form-control">
               <label for="sobrenome">Sobrenome</label>
               <input type="text" id="sobrenome" name="sobrenome" placeholder="ex.: Félix" class="form-control">
               <label for="dataNascimento">Data de nascimento</label>
