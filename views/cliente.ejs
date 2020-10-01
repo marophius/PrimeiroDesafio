@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <title>Primeiro Desafio</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Desafio 1</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/cadastrarFuncionario">Cadastrar Funcionario</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/cadastrarCliente">Cadastrar Cliente</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    
+    </br>
+    <div class="container mt-4">
+      <h2>Lista de Clientes</h2>
+      <div>
+          <table class="table">
+            <thead>
+              <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Sobrenome</th>
+                  <th scope="col">Telefone</th>
+                  <th scope="col">Ações</th>
+              </tr>
+            </thead>
+              <tbody>
+                  <% cliente.forEach(function(cliente) { %>
+                     <tr>
+                       <td> <%= cliente.nome %></td>
+                       <td> <%= cliente.sobrenome %></td>
+                       <td> <%= cliente.telefone %></td>
+                       <td> <%= cliente.dataNascimento %></td>
+                         <form method="POST" action="/deletarCliente">
+                          <input type="hidden" name="id" value="<%= cliente._id%>">
+                          <a class="btn btn-danger">
+                           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                             <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                           </svg>
+                          </a>
+                         </form>
+                       </td>
+                     </tr>
+                  <% })%>
+              </tbody>
+          </table>
+      </div>
+  </div>
