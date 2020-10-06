@@ -94,31 +94,31 @@ app.post('/cadastrarFuncionario', (req, res) => {
 
 app.get('/editarFuncionario/:id', (req, res) => {
     Funcionario.findOne({ _id: req.params.id })
-        .then((funcionario) => {
-            res.render('editarFuncionario', { funcionario: funcionario });
+        .then((funcionarios) => {
+            res.render('editarFuncionario', { funcionarios: funcionarios });
         }).catch((error) => {
-            req.flash('error_msg', "Esse funcionario não existe");
+            console.log("Erro ao achar funcionario: " + error);
             res.redirect('/');
         })
 })
 
 app.post('/editarFuncionario', (req, res) => {
     Funcionario.findOne({ _id: req.body.id })
-        .then((funcionario) => {
-            funcionario.nome = req.body.nome;
-            funcionario.sobrenome = req.body.sobrenome;
-            funcionario.dataNascimento = req.body.dataNascimento;
-            funcionario.cargo = req.body.cargo;
+        .then((funcionarios) => {
+            funcionarios.nome = req.body.nome;
+            funcionarios.sobrenome = req.body.sobrenome;
+            funcionarios.dataNascimento = req.body.dataNascimento;
+            funcionarios.cargo = req.body.cargo;
 
-            funcionario.save().then(() => {
-                req.flash("success_msg", "Funcionario salvo!");
+            funcionarios.save().then(() => {
+                console.log("Salvo com sucesso");
                 res.redirect('/');
             }).catch((error) => {
-                req.flash("error_msg", "Houve um erro interno ao salvar a edição do funcionario");
+                console.log("Erro ao editar funcionario: " + error);
                 res.redirect('/');
             });
         }).catch((error) => {
-            req.flash("error_msg", "Houve um erro ao editar o funcionário");
+            console.log("Erro ao salvar a categoria: " + error);
             res.redirect('/');
         })
 });
@@ -158,6 +158,16 @@ app.get('/cliente', (req, res) => {
 
 });
 
+app.post('/deletarCliente', (req, res) => {
+    Cliente.deleteOne({ _id: req.body.id }).then(() => {
+        console.log("Cliente deletado com sucesso!")
+        res.redirect('/cliente');
+    }).catch((err) => {
+        console.log("Erro ao salvar cliente: " + err);
+        res.redirect('/cliente');
+    })
+})
+
 //Produto
 app.get('/cadastrarProduto', (req, res) => {
     res.render('cadastrarProduto');
@@ -188,3 +198,13 @@ app.get('/produtos', (req, res) => {
     })
 
 });
+
+app.post('/deletarProduto', (req, res) => {
+    Produto.deleteOne({ _id: req.body.id }).then(() => {
+        console.log("Produto deletada com sucesso!")
+        res.redirect('/produtos');
+    }).catch((err) => {
+        console.log("Erro ao salvar produto: " + err);
+        res.redirect('/produtos');
+    })
+})
