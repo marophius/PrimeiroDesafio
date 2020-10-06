@@ -60,12 +60,12 @@ app.get('/funcionarios', (req, res) => {
 });
 
 app.post('/deletarFuncionario', (req, res) => {
-    Funcionario.remove({ _id: req.body.id }).then(() => {
-        req.flash("success_msg", "Categoria deletada com sucesso");
-        res.redirect('/');
+    Funcionario.deleteOne({ _id: req.body.id }).then(() => {
+        console.log("Funcionario deletada com sucesso!")
+        res.redirect('/funcionarios');
     }).catch((err) => {
-        req.flash("error_msg", "Houve um erro ao deletar a categoria");
-        res.redirect('/');
+        console.log("Erro ao salvar a categoria: " + err);
+        res.redirect('/funcionarios');
     })
 })
 
@@ -83,11 +83,13 @@ app.post('/cadastrarFuncionario', (req, res) => {
 
     new Funcionario(novoFuncionario).save().then(() => {
         console.log("Categoria salva com sucesso!")
+        res.redirect('/funcionarios');
     }).catch((err) => {
         console.log("Erro ao salvar a categoria: " + err);
+        res.redirect('/cadastrarFuncionario');
     });
 
-    res.redirect('/');
+
 });
 
 app.get('/editarFuncionario/:id', (req, res) => {
@@ -142,6 +144,18 @@ app.post('/cadastrarCliente', (req, res) => {
         console.log("Erro ao salvar a categoria: " + err);
     });
     res.redirect('/');
+});
+
+app.get('/cliente', (req, res) => {
+    Cliente.find().then((cliente) => {
+        res.render('cliente', {
+            cliente: cliente
+        });
+    }).catch((err) => {
+        req.flash("error_msg", "Houve um erro ao exibir os clientes");
+        res.redirect('/cadastrarCliente');
+    })
+
 });
 
 //Produto
