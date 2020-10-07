@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
     <title>Primeiro Desafio</title>
 </head>
 
@@ -31,7 +31,7 @@
 
     <div class="container mt-4">
         <h2>Editar Funcionário</h2>
-        <form method="POST" action="/editarFuncionario">
+        <form method="POST" action="/editarFuncionario/<%= funcionarios._id %>">
             <input type="hidden" name="id" value="<%= funcionarios._id %> ">
             <label for="nome">Nome</label>
             <input type="text" id="nome" name="nome" placeholder="ex.: Christian" class="form-control" value="<%= funcionarios.nome %> ">

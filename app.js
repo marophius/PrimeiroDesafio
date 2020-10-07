@@ -11,6 +11,7 @@ const Cliente = mongoose.model("Clientes");
 const Funcionario = mongoose.model("Funcionarios");
 const Produto = mongoose.model("Produtos");
 var db = mongoose.connection;
+mongoose.set('useFindAndModify', false);
 
 
 // Config
@@ -102,26 +103,25 @@ app.get('/editarFuncionario/:id', (req, res) => {
         })
 })
 
-app.post('/editarFuncionario', (req, res) => {
-    Funcionario.findOne({ _id: req.body.id })
-        .then((funcionarios) => {
-            funcionarios.nome = req.body.nome;
-            funcionarios.sobrenome = req.body.sobrenome;
-            funcionarios.dataNascimento = req.body.dataNascimento;
-            funcionarios.cargo = req.body.cargo;
+app.post('/editarFuncionario/:id', (req, res) => {
+    Funcionario.findByIdAndUpdate({ _id: req.params.id },
 
-            funcionarios.save().then(() => {
-                console.log("Salvo com sucesso");
-                res.redirect('/');
-            }).catch((error) => {
-                console.log("Erro ao editar funcionario: " + error);
-                res.redirect('/');
-            });
-        }).catch((error) => {
-            console.log("Erro ao salvar a categoria: " + error);
+            {
+                $set: {
+                    nome: req.body.nome,
+                    sobrenome: req.body.sobrenome,
+                    dataNascimento: req.body.dataNascimento,
+                    cargo: req.body.cargo
+                }
+            }
+        )
+        .catch((error) => {
+            console.log("Erro ao salvar a funcionario: " + error);
+
             res.redirect('/');
         })
 });
+
 
 // CLIENTES
 app.get('/cadastrarCliente', (req, res) => {
