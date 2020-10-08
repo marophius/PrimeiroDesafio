@@ -52,6 +52,20 @@
             <label for="dataNascimento">Data de nascimento</label>
             <input type="date" id="dataNascimento" name="dataNascimento" class="form-control" value="<%= cliente.dataNascimento%>">
             <br />
+            <label for="cartaoFidelidade">Cartao Fidelidade</label>
+            <select name="cartaoFidelidade" id="cartaoFidelidade" value="<%= cliente.fidelidade%>">
+                <option value="sim">Sim</option>
+                <option value="nao">Nao</option>
+            </select>
+            <br />
+            <label for="deficiente">Deficiente</label>
+            <select name="deficiente" id="deficiente" value="<%= cliente.deficiente%>">
+                <option value="nao">Nao</option>
+                <option value="sim">Sim</option>
+            
+            </select>
+
+            <br />
             <button type="submit" class="btn btn-primary form-control">Salvar</button>
         </form>
     </div>

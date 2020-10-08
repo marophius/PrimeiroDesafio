@@ -79,7 +79,11 @@ app.post('/cadastrarFuncionario', (req, res) => {
         nome: req.body.nome,
         sobrenome: req.body.sobrenome,
         dataNascimento: req.body.dataNascimento,
-        cargo: req.body.cargo
+        cargo: req.body.cargo,
+        endereco: req.body.endereco,
+        deficiente: req.body.deficiente,
+        salario: req.body.salario,
+        cidade: req.body.cidade,
     }
 
     new Funcionario(novoFuncionario).save().then(() => {
@@ -111,7 +115,12 @@ app.post('/editarFuncionario/:id', (req, res) => {
                     nome: req.body.nome,
                     sobrenome: req.body.sobrenome,
                     dataNascimento: req.body.dataNascimento,
-                    cargo: req.body.cargo
+                    cargo: req.body.cargo,
+                    endereco: req.body.endereco,
+                    deficiente: req.body.deficiente,
+                    salario: req.body.salario,
+                    cidade: req.body.cidade
+
                 }
             },
             console.log("Alterado com sucesso!"),
@@ -138,6 +147,8 @@ app.post('/cadastrarCliente', (req, res) => {
         email: req.body.email,
         telefone: req.body.telefone,
         endereco: req.body.endereco,
+        fidelidade: req.body.fidelidade,
+        deficiente: req.body.deficiente,
     }
 
     new Cliente(novoCliente).save().then(() => {
@@ -193,6 +204,8 @@ app.post('/editarCliente/:id', (req, res) => {
                     email: req.body.email,
                     endereco: req.body.endereco,
                     dataNascimento: req.body.dataNascimento,
+                    fidelidade: req.body.fidelidade,
+                    deficiente: req.body.deficiente,
 
                 }
             },

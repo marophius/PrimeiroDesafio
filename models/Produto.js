@@ -7,7 +7,7 @@ const Produto = new Schema({
         required: true,
     },
     preco: {
-        type: Number,
+        type: String,
         required: true,
     },
     descricao: {
@@ -23,7 +23,7 @@ const Produto = new Schema({
         required: true,
     },
     quantidade: {
-        type: Number,
+        type: String,
         required: true,
     },
     marca: {

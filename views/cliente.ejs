@@ -33,6 +33,8 @@
                         <th scope="col">Sobrenome</th>
                         <th scope="col">Telefone</th>
                         <th scope="col">dataNascimento</th>
+                        <th scope="col">Cartao Fidelidade</th>
+                        <th scope="col">Endereço</th>
                         <th scope="col">Ações</th>
                     </tr>
                 </thead>
@@ -50,6 +52,12 @@
                             </td>
                             <td>
                                 <%= cliente.dataNascimento %>
+                            </td>
+                            <td>
+                                <%= cliente.fidelidade %>
+                            </td>
+                            <td>
+                                <%= cliente.endereco %>
                             </td>
                             <td style="display: inline-flex;">
                                 <form method="POST" action="/deletarCliente">

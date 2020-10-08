@@ -18,7 +18,24 @@ const Funcionario = new Schema({
     cargo: {
         type: String,
         required: true
-    }
+    },
+    endereco: {
+        type: String,
+        required: true
+    },
+    salario: {
+        type: String,
+        required: true
+    },
+    cidade: {
+        type: String,
+        required: true
+    },
+
+    deficiente: {
+        type: String,
+        required: true
+    },
 
 })
 

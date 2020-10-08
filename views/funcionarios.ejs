@@ -34,6 +34,10 @@
                         <th scope="col">Nome</th>
                         <th scope="col">Sobrenome</th>
                         <th scope="col">Cargo</th>
+                        <th scope="col">Endereço</th>
+                        <th scope="col">Deficiente</th>
+                        <th scope="col">Salario</th>
+                        <th scope="col">Cidade</th>
                         <th scope="col">Ações</th>
                     </tr>
                 </thead>
@@ -48,6 +52,18 @@
                             </td>
                             <td>
                                 <%= funcionario.cargo %>
+                            </td>
+                            <td>
+                                <%= funcionario.endereco %>
+                            </td>
+                            <td>
+                                <%= funcionario.deficiente %>
+                            </td>
+                            <td>
+                                <%= funcionario.salario %>
+                            </td>
+                            <td>
+                                <%= funcionario.cidade %>
                             </td>
                             <td style="display: inline-flex;">
                                 <form method="POST" action="/deletarFuncionario">

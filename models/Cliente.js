@@ -26,6 +26,14 @@ const Cliente = new Schema({
     endereco: {
         type: String,
         required: true,
+    },
+    fidelidade: {
+        type: String,
+        required: true,
+    },
+    deficiente: {
+        type: String,
+        required: true,
     }
 
 });
