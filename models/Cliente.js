@@ -2,32 +2,32 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const Cliente = new Schema({
-    nome:{
-        type:String,
-        required: true,
-    },
-    sobrenome:{
+    nome: {
         type: String,
         required: true,
     },
-    dataNascimento:{
+    sobrenome: {
+        type: String,
+        required: true,
+    },
+    dataNascimento: {
         type: Date,
         required: true,
         default: Date.now()
     },
-    email:{
+    email: {
         type: String,
-        required:true,
-    },
-    telefone:{
-        type: String,    
         required: true,
     },
-    endereco:{
+    telefone: {
         type: String,
-        required:true,
+        required: true,
+    },
+    endereco: {
+        type: String,
+        required: true,
     }
-    
+
 });
 
-mongoose.model("Clientes",Cliente);
+mongoose.model("Clientes", Cliente);

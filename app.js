@@ -141,11 +141,13 @@ app.post('/cadastrarCliente', (req, res) => {
     }
 
     new Cliente(novoCliente).save().then(() => {
-        console.log("Categoria salva com sucesso!")
+        console.log("Categoria salva com sucesso!");
+        res.redirect('/cliente');
     }).catch((err) => {
         console.log("Erro ao salvar a categoria: " + err);
+        res.redirect('/cadastrarCliente');
     });
-    res.redirect('/');
+
 });
 
 app.get('/cliente', (req, res) => {
@@ -170,6 +172,40 @@ app.post('/deletarCliente', (req, res) => {
     })
 })
 
+app.get('/editarCliente/:id', (req, res) => {
+    Cliente.findOne({ _id: req.params.id })
+        .then((cliente) => {
+            res.render('editarCliente', { cliente: cliente });
+        }).catch((error) => {
+            console.log("Erro ao achar Cliente: " + error);
+            res.redirect('/');
+        })
+})
+
+app.post('/editarCliente/:id', (req, res) => {
+    Cliente.findByIdAndUpdate({ _id: req.params.id },
+
+            {
+                $set: {
+                    nome: req.body.nome,
+                    sobrenome: req.body.sobrenome,
+                    telefone: req.body.telefone,
+                    email: req.body.email,
+                    endereco: req.body.endereco,
+                    dataNascimento: req.body.dataNascimento,
+
+                }
+            },
+            console.log("Alterado com sucesso!"),
+            res.redirect('/cliente')
+        )
+        .catch((error) => {
+            console.log("Erro ao salvar a cliente: " + error);
+
+            res.redirect('/');
+        })
+});
+
 //Produto
 app.get('/cadastrarProduto', (req, res) => {
     res.render('cadastrarProduto');
@@ -183,10 +219,11 @@ app.post('/cadastrarProduto', (req, res) => {
 
     new Produto(novoProduto).save().then(() => {
         console.log("Categoria salva com sucesso!")
+        res.redirect('/produtos');
     }).catch((err) => {
         console.log("Erro ao salvar a categoria: " + err);
+        res.redirect('/');
     });
-    res.redirect('/');
 });
 
 app.get('/produtos', (req, res) => {
@@ -210,3 +247,35 @@ app.post('/deletarProduto', (req, res) => {
         res.redirect('/produtos');
     })
 })
+
+app.get('/editarProduto/:id', (req, res) => {
+    Produto.findOne({ _id: req.params.id })
+        .then((produto) => {
+            res.render('editarProduto', { produto: produto });
+        }).catch((error) => {
+            console.log("Erro ao achar produto: " + error);
+            res.redirect('/');
+        })
+})
+
+app.post('/editarProduto/:id', (req, res) => {
+    Produto.findByIdAndUpdate({ _id: req.params.id },
+
+            {
+                $set: {
+                    nomeProduto: req.body.nomeProduto,
+                    preco: req.body.preco,
+                    descricao: req.body.descricao,
+
+
+                }
+            },
+            console.log("Alterado com sucesso!"),
+            res.redirect('/produtos')
+        )
+        .catch((error) => {
+            console.log("Erro ao salvar a produto: " + error);
+
+            res.redirect('/');
+        })
+});
