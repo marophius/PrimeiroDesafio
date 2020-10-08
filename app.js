@@ -113,7 +113,9 @@ app.post('/editarFuncionario/:id', (req, res) => {
                     dataNascimento: req.body.dataNascimento,
                     cargo: req.body.cargo
                 }
-            }
+            },
+            console.log("Alterado com sucesso!"),
+            res.redirect('/funcionarios')
         )
         .catch((error) => {
             console.log("Erro ao salvar a funcionario: " + error);
