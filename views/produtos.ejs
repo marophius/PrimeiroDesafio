@@ -41,7 +41,12 @@
                     <tr>
                         <th scope="col">Produto</th>
                         <th scope="col">Preço</th>
+                        <th scope="col">Categoria</th>
                         <th scope="col">Descrição</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Promoção</th>
+                        <th scope="col">Disponivel</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,7 +59,22 @@
                                 <%= produto.preco %>
                             </td>
                             <td>
+                                <%= produto.categoria %>
+                            </td>
+                            <td>
                                 <%= produto.descricao %>
+                            </td>
+                            <td>
+                                <%= produto.quantidade %>
+                            </td>
+                            <td>
+                                <%= produto.marca %>
+                            </td>
+                            <td>
+                                <%= produto.promocao %>
+                            </td>
+                            <td>
+                                <%= produto.disponivel %>
                             </td>
                             <td style="display: inline-flex;">
                                 <form method="POST" action="/deletarProduto">

@@ -7,13 +7,35 @@ const Produto = new Schema({
         required: true,
     },
     preco: {
-        type: String,
+        type: Number,
         required: true,
     },
     descricao: {
         type: String,
         required: true,
+    },
+    categoria: {
+        type: String,
+        required: true,
+    },
+    promocao: {
+        type: String,
+        required: true,
+    },
+    quantidade: {
+        type: Number,
+        required: true,
+    },
+    marca: {
+        type: String,
+        required: true,
+    },
+    disponivel: {
+        type: String,
+        required: true,
+
     }
+
 
 });
 

@@ -39,10 +39,43 @@
     <form method="POST" action="/cadastrarProduto">
         <label for="nomeProduto">Produto</label>
         <input type="text" id="nomeProduto" name="nomeProduto" placeholder=" ex.: Tv" class="form-control">
+
         <label for="preco">Preço</label>
         <input type="number" id="preco" name="preco" placeholder="ex.: 100" class="form-control">
+
+        <label for="quantidade">quantidade</label>
+        <input type="number" id="quantidade" name="quantidade" placeholder="ex.: 5" class="form-control">
+
+        <label for="marca">Marca</label>
+        <input type="text" id="marca" name="marca" placeholder="ex.: LG' " class="form-control">
+
         <label for="descricao">Descrição</label>
         <input type="text" id="descricao" name="descricao" placeholder="ex.: Tv plasma 50' " class="form-control">
+
+        <br />
+        <label for="promocao">Promoção</label>
+        <select name="promocao" id="promocao">
+            <option value="sim">Sim</option>
+            <option value="nao">Nao</option>
+        </select>
+        <br />
+
+        <br />
+        <label for="disponivel">Disponivel para entrega</label>
+        <select name="disponivel" id="disponivel">
+            <option value="sim">Sim</option>
+            <option value="nao">Nao</option>
+        </select>
+        <br />
+
+        <br />
+        <label for="categoria">Categoria</label>
+        <select name="categoria" id="categoria">
+            <option value="eletronico">Eletronico</option>
+            <option value="eletrodomestico">Eletrodomestico</option>
+            <option value="brinquedo">Brinquedo</option>
+            <option value="outro">Outro</option>
+        </select>
         <br />
         <button type="submit" class="btn btn-primary form-control">Cadastrar</button>
     </form>

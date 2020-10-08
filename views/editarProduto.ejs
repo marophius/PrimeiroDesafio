@@ -44,6 +44,37 @@
             <label for="descricao">Descrição</label>
             <input type="text" id="descricao" name="descricao" placeholder="ex.: Tv plasma 50' " class="form-control" value="<%= produto.descricao %> ">
 
+            <label for="quantidade">quantidade</label>
+            <input type="number" id="quantidade" name="quantidade" placeholder="ex.: 5" class="form-control" value="<%= produto.quantidade %> ">
+
+            <label for="marca">Marca</label>
+            <input type="text" id="marca" name="marca" placeholder="ex.: LG' " class="form-control" value="<%= produto.marca %> ">
+
+            <br />
+            <label for="promocao">Promoção</label>
+            <select name="promocao" id="promocao" value="<%= produto.promocao %> ">
+            <option value="sim">Sim</option>
+            <option value="nao">Nao</option>
+        </select>
+            <br />
+
+            <br />
+            <label for="disponivel">Disponivel para entrega</label>
+            <select name="disponivel" id="disponivel" value="<%= produto.disponivel %> ">
+            <option value="sim">Sim</option>
+            <option value="nao">Nao</option>
+        </select>
+            <br />
+
+            <br />
+            <label for="categoria">Categoria</label>
+            <select name="categoria" id="categoria" value="<%= produto.categoria %> ">
+                <option value="eletronico">Eletronico</option>
+                <option value="eletrodomestico">Eletrodomestico</option>
+                <option value="brinquedo">Brinquedo</option>
+                <option value="outro">Outro</option>
+            </select>
+            <br />
             <br />
             <button type="submit" class="btn btn-primary form-control">Salvar</button>
         </form>

@@ -214,6 +214,11 @@ app.post('/cadastrarProduto', (req, res) => {
     const novoProduto = {
         nomeProduto: req.body.nomeProduto,
         preco: req.body.preco,
+        quantidade: req.body.quantidade,
+        marca: req.body.marca,
+        promocao: req.body.promocao,
+        disponivel: req.body.disponivel,
+        categoria: req.body.categoria,
         descricao: req.body.descricao,
     }
 
@@ -265,6 +270,11 @@ app.post('/editarProduto/:id', (req, res) => {
                 $set: {
                     nomeProduto: req.body.nomeProduto,
                     preco: req.body.preco,
+                    quantidade: req.body.quantidade,
+                    marca: req.body.marca,
+                    promocao: req.body.promocao,
+                    disponivel: req.body.disponivel,
+                    categoria: req.body.categoria,
                     descricao: req.body.descricao,
 
 
